@@ -61,6 +61,9 @@ class MoverApp {
         s.onpreimage = (function(preimage, request_reference_uuid) {
             this.consumer1OnPreimage(preimage, request_reference_uuid);
         }).bind(this);
+        s.onerror = (function(error_msg, request_reference_uuid) {
+            this.consumer1OnError(error_msg, request_reference_uuid);
+        }).bind(this);
         return s;
     }
 
@@ -86,6 +89,9 @@ class MoverApp {
         }).bind(this);
         s.onpreimage = (function(preimage, request_reference_uuid) {
             this.consumer2OnPreimage(preimage, request_reference_uuid);
+        }).bind(this);
+        s.onerror = (function(error_msg, request_reference_uuid) {
+            this.consumer2OnError(error_msg, request_reference_uuid);
         }).bind(this);
         return s;
     }
@@ -142,6 +148,10 @@ class MoverApp {
         console.log("got preimage from 1: " + preimage);
     }
 
+    consumer1OnError(error_msg, request_reference_uuid) {
+        console.log("got error from 1: " + error_msg);
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // Consumer 2 Stack Callbacks
     ///////////////////////////////////////////////////////////////////////////
@@ -177,6 +187,10 @@ class MoverApp {
 
     consumer2OnPreimage(preimage, request_reference_uuid) {
         console.log("got preimage from 2: " + preimage);
+    }
+
+    consumer2OnError(error_msg, request_reference_uuid) {
+        console.log("got error from 2: " + error_msg);
     }
 
     ///////////////////////////////////////////////////////////////////////////
